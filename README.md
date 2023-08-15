@@ -29,7 +29,7 @@ To get started, follow these steps:
 Build the Docker image using the following command.
   
   ```
-  docker build -t dinet . 
+  docker build --target inference -t dinet . 
 ```
 
 
