@@ -1,0 +1,10 @@
+opencv-python-headless == 4.6.0.66
+numpy ~= 1.19.2
+python_speech_features == 0.6
+resampy == 0.2.2
+scipy == 1.5.4
+python-speech-features==0.6
+torch==2.0.0 
+torchaudio==2.0.0
+black==23.7.0
+isort==5.12.0
