@@ -20,7 +20,7 @@ Tested on:
 # 📖 Prerequisites
 To get started, follow these steps:
 
-- Download the resources (asserts.zip) from Google Drive. Unzip the file and place the directory in the current directory (./). Alternatively, you can run the command `bash ./download_asserts.zip` in your terminal.
+- Download the resources (asserts.zip) n [Google drive](https://drive.google.com/file/d/1FHpYJqGrIKsItG313aokXes03qJxFyxg/view?usp=share_link). Unzip the file and place the directory in the current directory (./). Alternatively, you can run the command `bash ./download_asserts.zip` in your terminal.
 
 - For running inference or training, you have two options:
 
