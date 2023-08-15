@@ -1,4 +1,5 @@
-FROM ubuntu:20.04
+# inference stage
+FROM ubuntu:20.04 As inference
 
 ARG DEBIAN_FRONTEND=noninteractive
 
