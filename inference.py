@@ -45,7 +45,7 @@ def extract_frames_from_video(video_path, save_dir):
     os.makedirs(save_dir, exist_ok=True)
     # Construct the ffmpeg command
     ffmpeg_command = ["ffmpeg", "-i", video_path,
-                      os.path.join(save_dir, "%06d.jpg")]
+                      os.path.join(save_dir, "%06d.png")]
 
     # Run the ffmpeg command
     subprocess.run(
@@ -114,7 +114,7 @@ if __name__ == "__main__":
 
     # align frame with driving audio
     logging.info("aligning frames with driving audio")
-    video_frame_path_list = glob.glob(os.path.join(video_frame_dir, "*.jpg"))
+    video_frame_path_list = glob.glob(os.path.join(video_frame_dir, "*.png"))
     if len(video_frame_path_list) != video_landmark_data.shape[0]:
         raise ValueError("video frames are misaligned with detected landmarks")
     video_frame_path_list.sort()
