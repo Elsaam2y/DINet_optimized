@@ -54,7 +54,7 @@ Set up a Conda environment by executing the following commands.
 ## Run inference with example videos: 
 
   ```
-docker run --rm --gpus 'device=0' -v $PWD:/mnt python3 inference.py --mouth_region_size=256 --source_video_path=./asserts/examples/testxxx.mp4 --source_openface_landmark_path=./asserts/examples/testxxx.csv --driving_audio_path=./asserts/examples/driving_audio_xxx.wav --pretrained_clip_DINet_path=./asserts/clip_training_DINet_256mouth.pth  
+docker run --rm --gpus 'device=0' -v $PWD:/mnt dinet python3 inference.py --mouth_region_size=256 --source_video_path=./asserts/examples/testxxx.mp4 --source_openface_landmark_path=./asserts/examples/testxxx.csv --driving_audio_path=./asserts/examples/driving_audio_xxx.wav --pretrained_clip_DINet_path=./asserts/clip_training_DINet_256mouth.pth  
 ```
 
 The results are saved in ./asserts/inference_result.
@@ -69,7 +69,7 @@ First, use the following Docker command to extract facial landmarks for your vid
 Run inference using the following command.
 
 ```
-docker run --rm --gpus 'device=0' -v $PWD:/mnt python3 inference.py --mouth_region_size=256 --source_video_path=<path_to_your_video>.mp4 --source_openface_landmark_path=<path_to_openface_output>.csv --driving_audio_path=<path_to_your_audio_file>.wav --pretrained_clip_DINet_path=./asserts/clip_training_DINet_256mouth.pth  
+docker run --rm --gpus 'device=0' -v $PWD:/mnt dinet python3 inference.py --mouth_region_size=256 --source_video_path=<path_to_your_video>.mp4 --source_openface_landmark_path=<path_to_openface_output>.csv --driving_audio_path=<path_to_your_audio_file>.wav --pretrained_clip_DINet_path=./asserts/clip_training_DINet_256mouth.pth  
 ```
 
 # 🧠 Training
