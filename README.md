@@ -72,6 +72,22 @@ Run inference using the following command.
 docker run --rm --gpus 'device=0' -v $PWD:/mnt dinet python3 inference.py --mouth_region_size=256 --source_video_path=<path_to_your_video>.mp4 --source_openface_landmark_path=<path_to_openface_output>.csv --driving_audio_path=<path_to_your_audio_file>.wav --pretrained_clip_DINet_path=./asserts/clip_training_DINet_256mouth.pth  
 ```
 
+Run inference using the following command.
+
+```
+docker run --rm --gpus 'device=0' -v $PWD:/mnt dinet python3 inference.py --mouth_region_size=256 --source_video_path=<path_to_your_video>.mp4 --source_openface_landmark_path=<path_to_openface_output>.csv --driving_audio_path=<path_to_your_audio_file>.wav --pretrained_clip_DINet_path=./asserts/clip_training_DINet_256mouth.pth  
+```
+
+Using Conda.
+
+```
+  #Activate the environment
+  conda activate dinet
+
+  # Run the command
+  python3 inference.py --mouth_region_size=256 --source_video_path=<path_to_your_video>.mp4 --source_openface_landmark_path=<path_to_openface_output>.csv --driving_audio_path=<path_to_your_audio_file>.wav --pretrained_clip_DINet_path=./asserts/clip_training_DINet_256mouth.pth  
+```
+
 # 🧠 Training
 First, you need to build the Docker image with the training dependencies as follows.
 
