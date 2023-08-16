@@ -18,31 +18,45 @@ else:
     print("Using CPU")
 
 
+# This process requires GPU
 class Wav2VecFeatureExtractor:
     def __init__(self):
         self.bundle = torchaudio.pipelines.HUBERT_ASR_LARGE
         # Build the model and load the pretrained weights
         self.model = self.bundle.get_model().to(device)
 
-    def compute_audio_feature(self, audio_path):
+    # fix OOM issues by processing long audio files into smaller chunks
+    def compute_audio_feature(self, audio_path, chunk_duration=10):
         # Load the audio waveform
         waveform, sample_rate = torchaudio.load(audio_path)
 
-        # Move the audio waveform to the GPU
-        waveform = waveform.to(device)
+        # Calculate the number of samples in each chunk
+        chunk_samples = int(chunk_duration * sample_rate)
 
-        # Resample the audio to the expected sampling rate
-        resampler = torchaudio.transforms.Resample(
-            sample_rate, self.bundle.sample_rate
-        ).to(device)
-        waveform = resampler(waveform)
+        # Initialize a list to store the results for each chunk
+        all_emissions = []
 
-        # Infer the label probability distribution (emissions)
-        emissions, _ = self.model(waveform)
-        # ignore the second channel
-        emissions = emissions[0, ::2]
+        # Iterate over the audio waveform in chunks
+        for i in range(0, waveform.size(1), chunk_samples):
+            chunk = waveform[:, i: i + chunk_samples]
 
-        # Move the emissions back to the CPU if needed
-        emissions = emissions.to("cpu")
+            # Move the chunk to the same device as the model
+            chunk = chunk.to(device)
 
-        return emissions.detach().numpy()
+            # Resample the chunk
+            resampler = torchaudio.transforms.Resample(
+                sample_rate, self.bundle.sample_rate
+            ).to(device)
+            chunk = resampler(chunk)
+
+            # Infer the label probability distribution (emissions) for the chunk
+            emissions, _ = self.model(chunk)
+            emissions = emissions[0, ::2]
+
+            # Move the emissions back to the CPU
+            emissions = emissions.to("cpu")
+
+            all_emissions.append(emissions.detach().numpy())
+
+        return np.concatenate(all_emissions, axis=0)
+
