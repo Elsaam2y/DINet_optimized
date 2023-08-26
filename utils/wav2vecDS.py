@@ -21,8 +21,6 @@ class _Wav2vecDS(nn.Module):
 
 
 # mapping the features from wav2vec to DS
-
-
 class Wav2vecDS(nn.Module):
     def __init__(self):
         super(Wav2vecDS, self).__init__()
