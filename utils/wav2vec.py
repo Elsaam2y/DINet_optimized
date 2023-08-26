@@ -38,7 +38,7 @@ class Wav2VecFeatureExtractor:
 
         # Iterate over the audio waveform in chunks
         for i in range(0, waveform.size(1), chunk_samples):
-            chunk = waveform[:, i: i + chunk_samples]
+            chunk = waveform[:, i : i + chunk_samples]
 
             # Move the chunk to the same device as the model
             chunk = chunk.to(device)
@@ -59,4 +59,3 @@ class Wav2VecFeatureExtractor:
             all_emissions.append(emissions.detach().numpy())
 
         return np.concatenate(all_emissions, axis=0)
-
