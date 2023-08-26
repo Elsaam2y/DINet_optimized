@@ -39,31 +39,3 @@ class Wav2vecDS(nn.Module):
         with torch.no_grad():
             output = model(input_data)
         return output.numpy()
-
-
-# if __name__ == "__main__":
-
-#     # Load the trained model
-#     model_path = "./asserts/wav2vecDS.pt"
-#     loaded_model = torch.load(model_path)
-#     # Assuming fc1.weight corresponds to input_dim
-#     print(f"input_dim = :{loaded_model['fc1.weight'].shape[1]}")  # 29
-#     # hidden_dim = loaded_model['fc1.weight'].shape[0]  # Assuming fc1.weight corresponds to hidden_dim
-#     print(f"hidden_dim = :{loaded_model['fc1.weight'].shape[0]}")  # 512
-#     input_dim = 29
-#     hidden_dim = 512
-#     # Create the Wav2vecDS model using the retrieved dimensions
-#     model = Wav2vecDS(input_dim, hidden_dim)
-#     model.load_state_dict(loaded_model)
-
-#     # Prepare input data for inference (replace this with your actual data)
-#     # Replace with your input data
-#     input_data = torch.tensor(np.load("./wav2vec/audio_features_hubert.npy"))
-
-#     # Perform inference
-#     with torch.no_grad():
-#         output = model(input_data)
-
-#     # Process or save the output as needed
-#     # For example, if you want to convert the output back to a numpy array:
-#     output_array = output.numpy()
